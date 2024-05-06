@@ -12,12 +12,20 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class LoginComponent {
 
 
-  signupdata : FormGroup
+  signupform : FormGroup
+  loginform : FormGroup
+  activeForm : 'login' | 'register' = 'login'
 
   constructor (private formBuilder: FormBuilder) {
-      this.signupdata = this.formBuilder.group({
+      this.signupform = this.formBuilder.group({
         username : ["",  Validators.required],
-        email: ['', Validators.required],
+        email: ['', Validators.required, Validators.email],
+        password: ['', Validators.required]
+
+      })
+
+      this.loginform = this.formBuilder.group({
+        email: ['', Validators.required, ],
         password: ['', Validators.required]
 
       })
@@ -25,10 +33,29 @@ export class LoginComponent {
 
 
 
-  signup_form = () => {
-      console.log(this.signupdata.value)  
+  // toggleForm
+  toggleForm = (form : 'login' | 'register') => {
+      this.activeForm = form
+  }
+
+
+
+  handle_signup_form = () => {
+      console.log(this.signupform.value)  
     
   }
+
+
+  handle_login_form = () => {
+       if(this.loginform.valid) {
+        console.log("loginform", this.loginform.value)
+       }else{
+
+       }
+  }
+
+
+
 
 
 }

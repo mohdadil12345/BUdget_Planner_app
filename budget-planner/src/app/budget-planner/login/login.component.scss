@@ -38,7 +38,17 @@
 
 
 
-
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #008080, #80ced6);
+    color: #ffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
 
 
 button:hover{
@@ -46,14 +56,33 @@ button:hover{
 }
 
 .signupform {
-
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .signupform p{
    text-align: center;
    cursor: pointer;
-   color: #666666;
+   color: green;
    transition: color 0.3s ease;
+
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"]{
+    width:90%;
+    padding: 15px;
+    border: 1px solid #008080;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"]:focus{
+    outline: none;
 }
 
 
@@ -64,4 +93,10 @@ button:hover{
  color: #80ced6;
  text-decoration: underline;
 
+}
+
+.account {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }

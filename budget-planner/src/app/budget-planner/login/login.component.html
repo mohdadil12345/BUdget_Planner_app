@@ -7,9 +7,31 @@
 <div class="login-container">
 
 
-       <form  [formGroup]="signupdata" (ngSubmit)="signup_form()" class="signupform">
+   <!-- login form -->
+   <form *ngIf="activeForm == 'login' "  [formGroup]="loginform" (ngSubmit)="handle_login_form()" class="signupform">
 
-        <h2>Signup</h2>
+      <h2>Login</h2>
+
+
+      <input formControlName="email" type="text" placeholder="email">
+
+      <input formControlName="password" type="text" placeholder="password">
+
+      <button type="submit">Login</button>
+
+     <div class="account">
+       <p>Don't have an  account</p>
+       <span  (click)="toggleForm('register')" class="highlighted">Register</span>
+     </div>
+
+
+     </form>
+
+
+   <!-- signup form -->
+       <form *ngIf="activeForm == 'register' "  [formGroup]="signupform" (ngSubmit)="handle_signup_form()" class="signupform">
+
+        <h2>Register</h2>
 
         <input formControlName="username"  type="text" placeholder="username">
 
@@ -19,8 +41,10 @@
 
         <button type="submit">Signup</button>
 
-        <p>Already have an account</p>
-        <span class="highlighted">Login</span>
+       <div class="account">
+         <p>Already have an account</p>
+         <span  (click)="toggleForm('login')" class="highlighted">Login</span>
+       </div>
 
 
        </form>
