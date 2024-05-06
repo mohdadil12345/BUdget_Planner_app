@@ -30,3 +30,38 @@
     margin-bottom: 20px;
     text-align: center;
 }
+
+
+.form-group{
+    margin-bottom: 25px;
+}
+
+
+
+
+
+
+button:hover{
+    background: #67bbc6;
+}
+
+.signupform {
+
+}
+
+.signupform p{
+   text-align: center;
+   cursor: pointer;
+   color: #666666;
+   transition: color 0.3s ease;
+}
+
+
+.highlighted{
+    text-decoration: underline;
+}
+.highlighted:hover{
+ color: #80ced6;
+ text-decoration: underline;
+
+}
