@@ -12,7 +12,28 @@ import { Router } from '@angular/router';
   styleUrl: './income.component.scss',
 })
 export class IncomeComponent {
+
   incomeForm: any;
+  selectedMonth : any
+
+  januaryIncomes : any[] = [
+    {source : "Salary", amount:5000, investments: "401(k)"},
+    {source : "Freelancing", amount:1000, investments: "Stocks"},
+  ]
+
+  februaryIncomes : any[] = [
+    {source : "Salary", amount:5500, investments: "401(k)"},
+    {source : "Rental Income", amount:700, investments: "Real Esatate"},
+  ]
+
+  marchIncomes : any[] = [
+    {source : "Salary", amount:5200, investments: "401(k)"},
+    {source : "Freelancing", amount:1200, investments: "Stocks"},
+    {source : "Rental Income", amount:600, investments: "Real Esatate"},
+  ]
+
+
+
 
   constructor(public fb: FormBuilder) {}
 
@@ -33,8 +54,31 @@ export class IncomeComponent {
 
 
   onChange(event:any) {
-
+  this.selectedMonth = event.target.value
+  this.getFilteredIncomes()
   }
+
+    getFilteredIncomes() {
+
+    let filteredIncomes: any[]  = []
+      switch (this.selectedMonth) {
+        case "January":
+          filteredIncomes = [...this.januaryIncomes]
+          break;
+
+          case "February":
+            filteredIncomes = [...this.februaryIncomes]
+            break;
+
+            case "March":
+              filteredIncomes = [...this.marchIncomes]
+              break;
+      
+        default:
+          break;
+      }
+
+    }
 
 
 
