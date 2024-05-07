@@ -21,14 +21,36 @@ export class DashboardComponent {
   lastMonthExpense = ["January: $800", "February:$1000", "March: $1200"]
   currentMonthExpense = '$1500'
 
+
+  todoTransactions = [
+    {description : "Pay electricity bill"},
+    {description : "Submit monthly report"},
+    {description : "Buy groceries"},
+    {description : "Call insurance company"},
+  ]
+
+  totalCurrentMonthIncome = 200
+  totalCurrentMonthExpense = 1500
+
+
   constructor(public router:Router){}
+
   onIncome() {
     this.router.navigate(["/budget-planner/income"])
   }
+
   onExpense() {
     this.router.navigate(["/budget-planner/income"])
   }
 
+  onTodo() {
+    this.router.navigate(["/budget-planner/todo"])
+  }
+
+
+  get CurrentMonthSavings(): number {
+    return this.totalCurrentMonthIncome - this.totalCurrentMonthExpense
+  }
 
 
 }
