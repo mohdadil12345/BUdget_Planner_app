@@ -12,30 +12,32 @@ import { Router } from '@angular/router';
   styleUrl: './income.component.scss',
 })
 export class IncomeComponent {
-
   incomeForm: any;
-  selectedMonth : any
+  selectedMonth: any;
 
-  januaryIncomes : any[] = [
-    {source : "Salary", amount:5000, investments: "401(k)"},
-    {source : "Freelancing", amount:1000, investments: "Stocks"},
-  ]
+  januaryIncomes: any[] = [
+    { source: 'Salary', amount: 5000, investments: '401(k)' },
+    { source: 'Freelancing', amount: 1000, investments: 'Stocks' },
+  ];
 
-  februaryIncomes : any[] = [
-    {source : "Salary", amount:5500, investments: "401(k)"},
-    {source : "Rental Income", amount:700, investments: "Real Esatate"},
-  ]
+  februaryIncomes: any[] = [
+    { source: 'Salary', amount: 5500, investments: '401(k)' },
+    { source: 'Rental Income', amount: 700, investments: 'Real Esatate' },
+  ];
 
-  marchIncomes : any[] = [
-    {source : "Salary", amount:5200, investments: "401(k)"},
-    {source : "Freelancing", amount:1200, investments: "Stocks"},
-    {source : "Rental Income", amount:600, investments: "Real Esatate"},
-  ]
+  marchIncomes: any[] = [
+    { source: 'Salary', amount: 5200, investments: '401(k)' },
+    { source: 'Freelancing', amount: 1200, investments: 'Stocks' },
+    { source: 'Rental Income', amount: 600, investments: 'Real Esatate' },
+  ];
 
-
-
-
-  constructor(public fb: FormBuilder) {}
+  monthSelected: boolean = false;
+  constructor(public fb: FormBuilder, public router: Router) {
+    const currentDate = new Date();
+    this.selectedMonth = currentDate.toLocaleString('default', {
+      month: 'long',
+    });
+  }
 
   ngOnInit(): void {
     this.incomeForm = this.fb.group({
@@ -46,40 +48,92 @@ export class IncomeComponent {
     });
   }
 
-
-
   onSubmit() {
+    if(this.incomeForm.valid) {
+      const newIncome = this.incomeForm.value
 
-  }
-
-
-  onChange(event:any) {
-  this.selectedMonth = event.target.value
-  this.getFilteredIncomes()
-  }
-
-    getFilteredIncomes() {
-
-    let filteredIncomes: any[]  = []
       switch (this.selectedMonth) {
-        case "January":
-          filteredIncomes = [...this.januaryIncomes]
+        case 'January':
+           this.januaryIncomes.push(newIncome);
           break;
-
-          case "February":
-            filteredIncomes = [...this.februaryIncomes]
-            break;
-
-            case "March":
-              filteredIncomes = [...this.marchIncomes]
-              break;
-      
+  
+        case 'February':
+           this.februaryIncomes.push(newIncome);
+        break;
+  
+        case 'March':
+           this.marchIncomes.push(newIncome);
+          break;
+  
         default:
-          break;
+         break
       }
+      this.incomeForm.reset()
+      this.incomeForm.patchValue({month: "", source: "", amount: "", investments: ""})
+
+
 
     }
+  }
 
+  onChange(event: any) {
+    this.selectedMonth = event.target.value;
+    this.monthSelected = true;
+    this.getFilteredIncomes();
+  }
 
+  calculateTotalIncome(month: string): number {
+    let totalIncome = 0;
 
+    for (const income of this.getIncomesForMonth(month)) {
+      totalIncome += income.amount;
+    }
+    return totalIncome;
+  }
+
+  getIncomesForMonth(month: string): any[] {
+    switch (month) {
+      case 'January':
+        return this.januaryIncomes;
+
+      case 'February':
+        return this.februaryIncomes;
+
+      case 'March':
+        return this.marchIncomes;
+
+      default:
+        return [];
+    }
+  }
+
+  getFilteredIncomes(): any {
+    let filteredIncomes: any[] = [];
+
+    switch (this.selectedMonth) {
+      case 'January':
+        filteredIncomes = [...this.januaryIncomes];
+        break;
+
+      case 'February':
+        filteredIncomes = [...this.februaryIncomes];
+        break;
+
+      case 'March':
+        filteredIncomes = [...this.marchIncomes];
+        break;
+
+      default:
+       break
+    }
+    return filteredIncomes
+  }
+
+  onBack() {
+    this.router.navigate(['/budget-planner/dashboard']);
+  }
+
+  saveForm() {
+    alert('Form saved');
+  }
 }
