@@ -1,0 +1,69 @@
+
+
+<app-side-nav></app-side-nav>
+
+
+<div class="container">
+
+
+  <div class="card-container">
+
+<!-- income card -->
+    <div class="card">
+       <div class="card-header">
+        <span class="icon income-icon"><mat-icon>attach_money</mat-icon></span>
+
+        <h2>Income</h2>
+       </div>
+       <hr>
+
+     <div class="income-details">
+        <div class="month">
+            <h3>Last Few Months</h3>
+            <ul>
+                <li *ngFor="let monthIncome of lastMonthIncome">{{monthIncome}}</li>
+            </ul>
+        </div>
+        <div class="month">
+            <h3>Current Month</h3>
+            <p>{{currentMonthIncome}}</p>
+        </div>
+        <button (click)="onIncome()" class="button">View</button>
+     </div>
+
+    </div>
+
+    <!-- expense card -->
+
+
+    <div class="card">
+        <div class="card-header">
+         <span class="icon expense-icon"><mat-icon>money_off</mat-icon></span>
+ 
+         <h2>Expense</h2>
+        </div>
+        <hr>
+ 
+      <div class="income-details">
+         <div class="month">
+             <h3>Last Few Months</h3>
+             <ul>
+                 <li *ngFor="let monthIncome of lastMonthExpense">{{monthIncome}}</li>
+             </ul>
+         </div>
+         <div class="month">
+             <h3>Current Month</h3>
+             <p>{{currentMonthExpense}}</p>
+         </div>
+         <button (click)="onExpense()" class="button">View</button>
+      </div>
+ 
+     </div>
+
+
+
+
+  </div>
+
+
+</div>
