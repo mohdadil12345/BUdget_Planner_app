@@ -40,7 +40,7 @@ export class DashboardComponent {
   }
 
   onExpense() {
-    this.router.navigate(["/budget-planner/income"])
+    this.router.navigate(["/budget-planner/expense"])
   }
 
   onTodo() {
