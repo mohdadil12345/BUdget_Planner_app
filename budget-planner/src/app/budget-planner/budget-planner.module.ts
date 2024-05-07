@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BudgetPlannerRoutingModule } from './budget-planner-routing.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import { BudgetPlannerRoutingModule } from './budget-planner-routing.module';
   imports: [
     CommonModule,
     BudgetPlannerRoutingModule,
+    MatIconModule
   ]
 })
 export class BudgetPlannerModule { }
