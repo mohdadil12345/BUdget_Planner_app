@@ -9,23 +9,32 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './income.component.html',
-  styleUrl: './income.component.scss'
+  styleUrl: './income.component.scss',
 })
 export class IncomeComponent {
+  incomeForm: any;
 
-  incomeForm : any
+  constructor(public fb: FormBuilder) {}
 
-  constructor(public fb : FormBuilder) {}
-
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.incomeForm = this.fb.group({
-      month : ["",  Validators.required],
+      month: ['', Validators.required],
       source: ['', Validators.required],
       amount: ['', Validators.required],
-      investments : ['', Validators.required],
-  })
+      investments: ['', Validators.required],
+    });
+  }
 
-}
+
+
+  onSubmit() {
+
+  }
+
+
+  onChange(event:any) {
+
+  }
 
 
 
