@@ -27,7 +27,7 @@ constructor(private router : Router) {}
 
 
   onProfile() {
-    this.router.navigate(["/budget-planner/profile"])
+    this.router.navigate(["budget-planner/profile"])
   }
 
 
@@ -39,7 +39,7 @@ constructor(private router : Router) {}
 
 
   onLogout() {
-
+    this.router.navigate(['/budget-planner/login']);
   }
 
 
