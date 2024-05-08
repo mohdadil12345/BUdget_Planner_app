@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +11,36 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AppComponent {
   title = 'budget-planner';
+  isSlideOut = true;
+
+
+constructor(private router : Router) {}
+
+
+  toggleSlideOut(): void {
+    this.isSlideOut = !this.isSlideOut;
+  }
+
+  onDash() {
+    this.router.navigate(["/budget-planner/dashboard"])
+    
+  }
+
+
+  onProfile() {
+    this.router.navigate(["budget-planner/profile"])
+  }
+
+
+
+  onHistory() {
+    this.router.navigate(["/budget-planner/history"])
+  }
+
+
+
+  onLogout() {
+    this.router.navigate(['/budget-planner/login']);
+  }
+
 }
