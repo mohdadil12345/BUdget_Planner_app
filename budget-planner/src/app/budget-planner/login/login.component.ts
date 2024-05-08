@@ -12,66 +12,49 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
-
-  signupform : FormGroup
-  loginform : FormGroup
-  activeForm : 'login' | 'register' = 'login'
-
-  constructor (private formBuilder: FormBuilder, private router:Router, private snackBar:MatSnackBar) {
-      this.signupform = this.formBuilder.group({
-        username : ["",  Validators.required],
-        email: ['', Validators.required, Validators.email],
-        password: ['', Validators.required]
-
-      })
-
-      this.loginform = this.formBuilder.group({
-        email: ['', Validators.required, ],
-        password: ['', Validators.required]
-
-      })
+  loginForm:any;
+  registerForm:any;
+  activeForm: 'login' | 'register' = 'login';
+  
+  constructor( private fb: FormBuilder,
+    private router: Router,
+    private snackBar: MatSnackBar){}
+  ngOnInit() {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
-
-
-
-  // toggleForm
-  toggleForm = (form : 'login' | 'register') => {
-      this.activeForm = form
+  
+  toggleForm(form: 'login' | 'register') {
+    this.activeForm = form;
   }
-
-
-
-  handle_signup_form = () => {
-    if(this.signupform.valid) {
-      console.log(this.signupform.value) 
-
-        setTimeout(() => {
-          window.location.reload()
-        }, 2000);
-        this.router.navigate(['/budget-planner/login'])
-
-        
-      } else{
-        this.snackBar.open('Please fill details properly', 'Close', {duration:3000})
-        // alert("Invalid email or passwor")
-
-      }
-    
+  
+  login() {
+    if (this.loginForm.valid) {
+      console.log("Login info==>", this.loginForm.value);
+      this.router.navigate(['/budget-planner/dashboard']);
+    } else {
+      this.snackBar.open('Invalid email or password!', 'Close', { duration: 3000 });
+    }
   }
-
-
-  handle_login_form = () => {
-       if(this.loginform.valid) {
-        console.log("loginform", this.loginform.value)
-        this.router.navigate(['/budget-planner/dashboard'])
-       }else{
-         this.snackBar.open('Invalid email or password', 'Close', {duration:3000})
-       }
+  register() {
+    if (this.registerForm.valid) {
+      console.log("Register info==>>", this.registerForm.value);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+      this.router.navigate(['/login']);
+    } else {
+      this.snackBar.open('Please fill in all fields correctly!', 'Close', { duration: 3000 });
+    }
   }
-
-
-
-
-
-}
+  
+  
+  }

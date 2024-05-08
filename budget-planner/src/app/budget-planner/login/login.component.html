@@ -1,52 +1,43 @@
 
-
 <div class="navbar">
-   <h2>BUDGET PLANNER</h2>
+  <h2>
+      BUDGET PLANNER
+  </h2>
 </div>
 
 <div class="login-container">
-
-
-   <!-- login form -->
-   <form *ngIf="activeForm == 'login' "  [formGroup]="loginform" (ngSubmit)="handle_login_form()" class="signupform">
-
+  <!-- Login -->
+  <form *ngIf="activeForm === 'login'" [formGroup]="loginForm" (ngSubmit)="login()">
       <h2>Login</h2>
-
-
-      <input formControlName="email" type="text" placeholder="email">
-
-      <input formControlName="password" type="text" placeholder="password">
-
+      <div class="form-group">
+        <input type="email" formControlName="email" placeholder="Email" />
+      </div>
+      <div class="form-group">
+        <input type="password" formControlName="password" placeholder="Password" />
+      </div>
       <button type="submit">Login</button>
-
-     <div class="account">
-       <p>Don't have an  account</p>
-       <span  (click)="toggleForm('register')" class="highlighted">Register</span>
-     </div>
-
-
-     </form>
+      <p (click)="toggleForm('register')">Don't have an account?
+        <span class="highlighted">Register</span>
+      </p>
+    </form>
 
 
-   <!-- signup form -->
-       <form *ngIf="activeForm == 'register' "  [formGroup]="signupform" (ngSubmit)="handle_signup_form()" class="signupform">
-
-        <h2>Register</h2>
-
-        <input formControlName="username"  type="text" placeholder="username">
-
-        <input formControlName="email" type="text" placeholder="email">
-
-        <input formControlName="password" type="text" placeholder="password">
-
-        <button type="submit">Signup</button>
-
-       <div class="account">
-         <p>Already have an account</p>
-         <span  (click)="toggleForm('login')" class="highlighted">Login</span>
-       </div>
-
-
-       </form>
+    <!-- Register -->
+    <form *ngIf="activeForm === 'register'" [formGroup]="registerForm" (ngSubmit)="register()">
+      <h2>Register</h2>
+      <div class="form-group">
+        <input type="text" formControlName="username" placeholder="Username" />
+      </div>
+      <div class="form-group">
+        <input type="email" formControlName="email" placeholder="Email" />
+      </div>
+      <div class="form-group">
+        <input type="password" formControlName="password" placeholder="Password" />
+      </div>
+      <button type="submit">Register</button>
+      <p (click)="toggleForm('login')">Already have an account?
+        <span class="highlighted">Login</span>
+      </p>
+    </form>
 
 </div>
